@@ -1,4 +1,4 @@
-import io
+import shutil
 import os
 import cv2
 import base64
@@ -20,6 +20,10 @@ def cv_to_base64(img):
     img_str = base64.b64encode(encoded).decode("ascii")
 
     return img_str
+
+def clear_uploads():
+    shutil.rmtree('uploads')
+    os.mkdir('uploads')
 
 @bp.route('/hello')
 def hello():
@@ -47,6 +51,7 @@ def test():
             print(img.shape)
             im_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             cv2.imwrite('uploads/gray.jpg', im_gray)
+            clear_uploads()
             img_str = cv_to_base64(im_gray)
             return img_str
     
