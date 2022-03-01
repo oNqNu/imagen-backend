@@ -1,19 +1,19 @@
 import os
-from flask import Flask, current_app
+from flask import Flask
 from flask_cors import CORS
 
-  
-app = Flask(__name__)
-CORS(app)
-app.config['UPLOAD_FOLDER'] = './uploads'
+def create_app():
+    
+    app = Flask(__name__)
+    CORS(app)
+    app.config['UPLOAD_FOLDER'] = './uploads'
 
-from routes import processing
-app.register_blueprint(processing.bp)
+    from routes import processing
+    app.register_blueprint(processing.bp)
 
-app.run()
 
-#     return app
+    return app
 
 # if __name__ == "__main__":
-#     app = create_app()
-#     app.run()
+    # app = create_app()
+    # app.run()
