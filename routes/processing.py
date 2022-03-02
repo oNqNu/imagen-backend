@@ -23,8 +23,8 @@ def clear_uploads():
 
 @bp.route("/grayscale", methods=['POST'])
 def grayscale():
-	if request.files['file0'].filename != u'':
-		file_data = request.files['file0'].read()
+	if request.files['image'].filename != u'':
+		file_data = request.files['image'].read()
 		nparr = np.fromstring(file_data, np.uint8)
 		img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 		im_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -35,8 +35,8 @@ def grayscale():
 
 @bp.route("/smoothing", methods=['POST'])
 def smoothing():
-	if request.files['file0'].filename != u'':
-		file_data = request.files['file0'].read()
+	if request.files['image'].filename != u'':
+		file_data = request.files['image'].read()
 		nparr = np.fromstring(file_data, np.uint8)
 		img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 		im_smooth = cv2.blur(img,(11,11))
@@ -47,8 +47,8 @@ def smoothing():
 
 @bp.route("/edge_detection", methods=['POST'])
 def edge_detection():
-	if request.files['file0'].filename != u'':
-		file_data = request.files['file0'].read()
+	if request.files['image'].filename != u'':
+		file_data = request.files['image'].read()
 		nparr = np.fromstring(file_data, np.uint8)
 		img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 		im_edge = cv2.Canny(img,180,300)
@@ -59,8 +59,8 @@ def edge_detection():
 
 @bp.route("/binary", methods=['POST'])
 def binary():
-	if request.files['file0'].filename != u'':
-		file_data = request.files['file0'].read()
+	if request.files['image'].filename != u'':
+		file_data = request.files['image'].read()
 		nparr = np.fromstring(file_data, np.uint8)
 		img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 		im_binary = cv2.threshold(img,120,255,cv2.THRESH_BINARY)
