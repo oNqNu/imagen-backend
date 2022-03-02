@@ -56,3 +56,15 @@ def edge_detection():
 		return img_str
 	
 	return '処理失敗'
+
+@bp.route("/binary", methods=['POST'])
+def binary():
+	if request.files['file0'].filename != u'':
+		file_data = request.files['file0'].read()
+		nparr = np.fromstring(file_data, np.uint8)
+		img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+		im_binary = cv2.threshold(img,120,255,cv2.THRESH_BINARY)
+		img_str = cv_to_base64(im_binary)
+		return img_str
+	
+	return '処理失敗'
