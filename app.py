@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = './uploads'
 
-from .routes import processing
+from routes import processing
 app.register_blueprint(processing.bp)
 
 @app.route('/')
