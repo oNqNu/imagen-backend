@@ -72,7 +72,7 @@ def binary():
 	return '処理失敗'
 
 @bp.route("/change_color", methods=['POST'])
-def binary():
+def change_color():
 	if request.files['image'].filename != u'':
 		file_data = request.files['image'].read()
 		nparr = np.fromstring(file_data, np.uint8)
