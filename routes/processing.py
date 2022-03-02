@@ -63,7 +63,7 @@ def binary():
 		file_data = request.files['image'].read()
 		nparr = np.fromstring(file_data, np.uint8)
 		img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-		im_binary = cv2.threshold(img,120,255,cv2.THRESH_BINARY)
+		ret, im_binary = cv2.threshold(img,120,255,cv2.THRESH_BINARY)
 		img_str = cv_to_base64(im_binary)
 		return img_str
 	
