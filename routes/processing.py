@@ -65,7 +65,7 @@ def binary():
 		img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 		# 一度グレスケール化
 		im_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-		ret, im_binary = cv2.threshold(img,120,255,cv2.THRESH_BINARY)
+		ret, im_binary = cv2.threshold(im_gray,120,255,cv2.THRESH_BINARY)
 		img_str = cv_to_base64(im_binary)
 		return img_str
 	
